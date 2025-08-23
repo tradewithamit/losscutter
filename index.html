@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <link rel="shortcut icon" href="https://github.com/tradewithamit/losscutter/blob/main/losscutterlogo.png?raw=true" type="image/x-icon">
+
+    <title>Trading With Karol</title>
+    <style>
+        :root {
+            --color1: #8C1007;
+            --color2: #660B05;
+            --color3: #3E0703;
+            --light: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--color1);
+            color: var(--light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            z-index: 1000;
+        }
+
+        header img {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #f0c0c0;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            height: 3px;
+            width: 25px;
+            background: var(--light);
+            margin: 4px;
+            transition: all 0.3s;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links.active {
+            display: block;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background: var(--color2);
+            padding: 10px;
+        }
+
+        .nav-links.active a {
+            display: block;
+            padding: 10px 0;
+        }
+
+        /* Hero Section */
+        /* Hero Section */
+        .hero {
+            position: relative;
+            /* overlay ke liye jaruri */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* justify-content: end; */
+            align-items: center;
+
+            text-align: center;
+            color: var(--light);
+            padding: 0 20px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('lll.jpg') center/cover no-repeat;
+            /* background: url('wallpapertwo.jpg') center top/cover no-repeat; */
+            filter: brightness(60%);
+            /* sirf image dark hogi */
+            z-index: -1;
+            /* text ke neeche bhejna */
+        }
+
+
+        .hero h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            max-width: 700px;
+        }
+
+        .hero button {
+            background: var(--color2);
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--light);
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+
+        }
+
+        .hero button::after {
+            content: "Click";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .hero button:hover {
+            background: var(--color1);
+        }
+
+        .hero button:hover span {
+            opacity: 0;
+        }
+
+        .hero button:hover::after {
+            opacity: 1;
+        }
+
+        /* About Section */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 80px 20px;
+            /* padding: 10px 20px; */
+            gap: 30px;
+            align-items: center;
+            /* background-color: red; */
+        }
+
+        .about h2 {
+            margin-bottom: 15px;
+            color: var(--color1);
+        }
+
+        .about p {
+            font-size: 1rem;
+        }
+
+        .about img {
+            width: 100%;
+            border-radius: 10px;
+            background: #ccc;
+        }
+
+        /* Courses Section */
+        .courses {
+            padding: 60px 20px;
+            text-align: center;
+            /* background-color: yellow; */
+            /* padding-top: 0px; */
+        }
+
+        .courses h2 {
+            margin-bottom: 40px;
+            /* margin-bottom: 10px; */
+            color: var(--color1);
+            /* background-color: green; */
+        }
+
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+            width: 100%;
+            max-width: 1200px;
+            /* center content */
+            margin: 0 auto;
+            /* background-color: yellow; */
+        }
+
+
+        .course-card {
+            background: var(--color2);
+            color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .course-card img {
+            padding: 10px;
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            cursor: pointer;
+            border-radius: 20px;
+        }
+
+        .course-card .content {
+            padding: 5px;
+            /* background-color: gray; */
+            margin-top: -10px;
+        }
+
+        .course-card h3 {
+            margin: 10px 0;
+
+        }
+
+
+        .old-price {
+            text-decoration: line-through;
+            margin-right: 10px;
+        }
+
+        .new-price {
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .course-card button {
+            margin-top: 10px;
+            background: var(--color1);
+            border: none;
+            padding: 10px 20px;
+            color: var(--light);
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .course-card button:hover {
+            background: var(--color3);
+        }
+
+        /* Why Buy Section */
+        .why-buy {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 80px 20px;
+            align-items: center;
+            background: #f9f9f9;
+        }
+
+        .why-buy h2 {
+            margin-bottom: 15px;
+            color: var(--color1);
+        }
+
+        .why-buy img {
+            width: 100%;
+            border-radius: 10px;
+            background: #ccc;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color3);
+            color: var(--light);
+            text-align: center;
+            padding: 15px;
+        }
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .about,
+            .why-buy {
+                grid-template-columns: 1fr;
+            }
+
+            .about {
+                gap: 15px;
+            }
+
+            .nav-links {
+                display: none;
+                /* hide by default */
+                flex-direction: column;
+                background: var(--color2);
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                padding: 15px;
+                border-radius: 8px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+
+                justify-content: end;
+
+            }
+
+            .about {
+
+                padding: 10px 20px;
+
+                /* background-color: red; */
+            }
+
+            .courses {
+                padding: 60px 20px;
+                text-align: center;
+                /* background-color: yellow; */
+                padding-top: 0px;
+            }
+
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <img src="losscutterlogo.png" alt="Logo">
+        <nav class="nav-links">
+            <a href="#about">About</a>
+            <a href="#courses">Courses</a>
+            <a href="#whybuy">What do we offer</a>
+        </nav>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Trading With Loss_Cutter</h1>
+        <h3>Empowering Investments, Unlocking Profits: Your Guide to Stock Market Success.</h3>
+        <button onclick="document.querySelector('#courses').scrollIntoView({behavior: 'smooth'})">
+            <span>Know More</span>
+        </button>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about">
+        <div>
+            <h2>Being a Trader, I always needed</h2>
+            <p>Loss_Cutter exceptional educator with a unique blend of expertise. With 6 years of trading experience
+                and an IIT Kharagpur education, they bring a wealth of knowledge to the classroom. Residing in Jaipur,
+                their successful hotel ventures reflect their entrepreneurial acumen. Passionate about sharing insights,
+                they inspire students to excel in trading and embrace a holistic approach to learning. Join their
+                classes for a transformative educational journey, where real-world experiences meet academic excellence.
+            </p>
+        </div>
+        <div>
+            <img src="pctwo.png" alt="About Image">
+        </div>
+    </section>
+
+    <!-- Courses -->
+    <section id="courses" class="courses">
+        <h2 id="green">Explore Our Courses</h2>
+        <div class="course-grid">
+            <div class="course-card">
+                <img src="https://img.youtube.com/vi/auIDtnMhwjk/sddefault.jpg" alt="Course">
+                <div class="content">
+                    <h3>📈 Mastering Technical Analysis</h3>
+                    <p><span class="old-price">₹4999</span><span class="new-price">₹1999</span></p>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="https://img.youtube.com/vi/li7xJrnNV5k/sddefault.jpg" alt="Course">
+                <div class="content">
+                    <h3>💹 Fundamental Analysis for Investing</h3>
+                    <p><span class="old-price">₹3999</span><span class="new-price">₹1499</span></p>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="https://img.youtube.com/vi/-x7k0xLyTs4/sddefault.jpg" alt="Course">
+                <div class="content">
+                    <h3>🕒 Intraday & Swing Trading Strategies</h3>
+                    <p><span class="old-price">₹2999</span><span class="new-price">₹999</span></p>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="https://img.youtube.com/vi/nEvCRm57GZQ/sddefault.jpg" alt="Course">
+                <div class="content">
+                    <h3>💹 Fundamental Analysis for Investing</h3>
+
+                    <p><span class="old-price">₹5999</span><span class="new-price">₹2499</span></p>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+            <div class="course-card">
+                <img src="https://img.youtube.com/vi/4qUNYtnzy2s/sddefault.jpg" alt="Course">
+                <div class="content">
+                    <h3>💹 Fundamental Analysis for Investing</h3>
+
+                    <p><span class="old-price">₹1999</span><span class="new-price">₹799</span></p>
+                    <button>Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Buy -->
+    <section id="whybuy" class="why-buy">
+        <div>
+            <img src="pcthree.png" alt="Why Buy Image">
+        </div>
+        <div>
+            <h2>Why should you Buy This course?</h2>
+            <p>Gateway to Financial Empowerment. Unlock the secrets of successful investing, stay updated with market
+                trends, and make informed decisions. Let's build your wealth journey together.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Trading With Loss_Cutter. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+    </script>
+    <script>
+        // Right click disable
+        document.addEventListener("contextmenu", (e) => e.preventDefault());
+
+        // Disable common keys (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U)
+        document.addEventListener("keydown", (e) => {
+            if (
+                e.key === "F12" ||
+                (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J")) ||
+                (e.ctrlKey && e.key === "U")
+            ) {
+                e.preventDefault();
+            }
+        });
+
+        // Detect if DevTools is open (size trick)
+        setInterval(() => {
+            if (window.outerHeight - window.innerHeight > 150 || window.outerWidth - window.innerWidth > 150) {
+                document.body.innerHTML = "<h1 style='color:red; text-align:center; margin-top:20%'>⚠️ Inspect Not Allowed!</h1>";
+            }
+        }, 1000);
+    </script>
+
+</body>
+
+</html>
